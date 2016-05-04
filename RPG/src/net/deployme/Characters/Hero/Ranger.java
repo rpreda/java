@@ -1,4 +1,4 @@
-package net.deployme.Characters;
+package net.deployme.Characters.Hero;
 
 /**
  * Created by rpreda on 04/05/16.
