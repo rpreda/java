@@ -15,6 +15,8 @@ public abstract class BaseHero {
 
     //Fields have to be initialised by hero type
     protected int hitpoints;
+    protected static int idIndex = 1;
+    protected int id;
     protected int maxHp;
     protected int baseDamage;
     protected int level = 1;
@@ -24,10 +26,24 @@ public abstract class BaseHero {
 
     protected HeroProfession profession;
 
-    //TODO: and reimplement hashCode and equals
-    //TODO: rewerite take damage and the defense function
-    //TODO: DEAL DAMAGE
-    //TODO: implement id and implement that one to villans too
+
+    public int hashCode() {
+        return this.id + this.hitpoints;
+    }
+
+    public boolean equals (Object obj) {
+        if (obj == null)
+            return false;
+        return obj instanceof BaseHero && ((BaseHero) obj).getId() == this.id;
+    }
+
+    public BaseHero() {
+        id = idIndex++;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String toString() {
         String items = "";
@@ -36,9 +52,16 @@ public abstract class BaseHero {
             items += item.toString() + " ";
         if (gear.isEmpty())
             items = "none";
-        return profession.toString() + " HP: " + hitpoints + " LEVEL: " +
+        return "ID: " + id + " PROFESSION: " + profession.toString() + " HP: " + hitpoints + " LEVEL: " +
                 level + " ITEMS: " + items + " WEAPON: " + wp +  " ARMOR: " + armor +
                 " BASEDMG: " + baseDamage;
+    }
+
+    public int dealDamage() {
+        int damageDealt = baseDamage;
+        if (weapon != null)
+            damageDealt = weapon.computeDamageIncrease(baseDamage);
+        return damageDealt;
     }
 
     public boolean loseItem(int id) {//lose by item id returns false if item not found
@@ -119,7 +142,12 @@ public abstract class BaseHero {
     }
 
     public boolean takeDamage(int trueDamage) {//returns true if still alive or false if dead
-        //hitpoints -= computeDefense(trueDamage);
+        for (BaseArmor gearPiece : gear) {
+            trueDamage = gearPiece.computeReduction(trueDamage);
+        }
+        if (trueDamage <= 2)
+            trueDamage = 2;
+        hitpoints -= trueDamage;
         if (hitpoints <= 0) {
             hitpoints = 0;
             return false;

@@ -8,9 +8,18 @@ public abstract class BaseEnemy {
 
     protected int hitpoints;
     protected int baseDamage;
+    protected static int idIndex = 1;
+    protected int id;
     protected int damageReduction;//between 1 to 100
     protected EnemyProfession profession;
 
+    public BaseEnemy() {
+        id = idIndex++;
+    }
+
+    public int getId() {
+        return id;
+    }
     public String toString() {
         return "HP: " + hitpoints + " BaseDamage: " + baseDamage + " DamageReduction: " + damageReduction;
     }
