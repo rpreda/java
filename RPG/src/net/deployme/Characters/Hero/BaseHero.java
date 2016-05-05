@@ -24,10 +24,53 @@ public abstract class BaseHero {
 
     protected HeroProfession profession;
 
-    //TODO: rewrite tostring and reimplement hashCode and equals
+    //TODO: and reimplement hashCode and equals
     //TODO: lose and get items
-    //TODO: rewerite take damage
+    //TODO: rewerite take damage and the defense function
     //TODO: DEAL DAMAGE
+
+    public String toString() {
+        String items = "";
+        String wp = weapon == null ? "none" : weapon.toString();
+        for (BaseItem item : gear)
+            items += item.toString() + " ";
+        if (gear.isEmpty())
+            items = "none";
+        return profession.toString() + " HP: " + hitpoints + " LEVEL: " +
+                level + " ITEMS: " + items + " WEAPON: " + wp +  " ARMOR: " + armor +
+                " BASEDMG: " + baseDamage;
+    }
+
+    public boolean loseItem(int id) {//lose by item id returns false if item not found
+        if (weapon.getId() == id) {
+            weapon = null;
+            return true;
+        } else {
+            for (Iterator<BaseArmor> iterator = gear.iterator(); iterator.hasNext();) {//Safely remove element from collection while iterating through it
+                BaseArmor gearPiece = iterator.next();
+                if (gearPiece.getId() == id) {
+                    iterator.remove();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void removeWeapon() {//removes the weapon
+        weapon = null;
+    }
+
+    public boolean loseGear(BaseArmor.Slot slot) {//lose gear by slot type
+        for (Iterator<BaseArmor> iterator = gear.iterator(); iterator.hasNext();) {//Safely remove element from collection while iterating through it
+            BaseArmor gearPiece = iterator.next();
+            if (gearPiece.getSlot() == slot) {
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
+    }
 
     public boolean getItem(BaseItem item) {//true if item added false else
         if (item != null && item.getMinimumLevel() <= this.level) {
@@ -40,7 +83,7 @@ public abstract class BaseHero {
                     BaseArmor gearPiece = iterator.next();
                     if (gearPiece.getSlot() == ((BaseArmor) item).getSlot()) {
                         iterator.remove();
-                        System.out.println("Duplicate found, removing it");
+                        //System.out.println("Duplicate found, removing it");
                     }
                 }
                 gear.add((BaseArmor)item);
