@@ -19,15 +19,15 @@ public abstract class BaseHero {
     protected int baseDamage;
     protected int level = 1;
     protected int armor; //1 point of armor reduces 0.2 damage ( /5 when computing)
-    protected BaseWeapon weapon;
-    protected List<BaseArmor> gear = new ArrayList<>();
+    private BaseWeapon weapon;
+    private List<BaseArmor> gear = new ArrayList<>();
 
     protected HeroProfession profession;
 
     //TODO: and reimplement hashCode and equals
-    //TODO: lose and get items
     //TODO: rewerite take damage and the defense function
     //TODO: DEAL DAMAGE
+    //TODO: implement id and implement that one to villans too
 
     public String toString() {
         String items = "";
@@ -42,7 +42,7 @@ public abstract class BaseHero {
     }
 
     public boolean loseItem(int id) {//lose by item id returns false if item not found
-        if (weapon.getId() == id) {
+        if (weapon != null && weapon.getId() == id) {
             weapon = null;
             return true;
         } else {
@@ -119,7 +119,7 @@ public abstract class BaseHero {
     }
 
     public boolean takeDamage(int trueDamage) {//returns true if still alive or false if dead
-        hitpoints -= computeDefense(trueDamage);
+        //hitpoints -= computeDefense(trueDamage);
         if (hitpoints <= 0) {
             hitpoints = 0;
             return false;

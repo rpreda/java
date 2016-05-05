@@ -1,18 +1,31 @@
 package net.deployme.Program;
 import net.deployme.Characters.Hero.*;
 import net.deployme.Items.Armor.AdeptChest;
+import net.deployme.Items.Armor.AdeptHelm;
+import net.deployme.Items.Armor.BaseArmor;
 import net.deployme.Items.Weapons.Sword;
 
 public class Program {
     public static void main(String args[]) {
         Sword swordTest = new Sword();
+        AdeptHelm helm = new AdeptHelm();
         AdeptChest chest = new AdeptChest();
 
         System.out.println("10 " + swordTest.computeDamageIncrease(10));
         System.out.println("10 " + chest.computeReduction(10));
         Guardian guard = new Guardian();
-
-
+        System.out.println(guard.toString());
+        guard.getItem(swordTest);
+        guard.getItem(chest);
+        guard.getItem(chest);
+        guard.getItem(helm);
+        System.out.println(guard.toString());
+        guard.loseItem(swordTest.getId());
+        System.out.println(guard.toString());
+        guard.loseGear(BaseArmor.Slot.CHEST);
+        System.out.println(guard.toString());
+        guard.loseItem(helm.getId());
+        System.out.println(guard.toString());
         /*Elementalist ele = new Elementalist();
         Guardian guard = new Guardian();
         Ranger rang = new Ranger();
