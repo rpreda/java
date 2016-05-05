@@ -1,9 +1,6 @@
 package net.deployme.Program;
 import net.deployme.Characters.Hero.*;
 
-/**
- * Created by rpreda on 04/05/16.
- */
 public class Program {
     public static void main(String args[]) {
         Elementalist ele = new Elementalist();
