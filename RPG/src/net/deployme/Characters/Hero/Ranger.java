@@ -5,16 +5,6 @@ package net.deployme.Characters.Hero;
  */
 public class Ranger extends BaseHero {
 
-    protected boolean canTakeArtifact(BaseHero.Artifact art) {
-        switch (art) {
-            case BOW: return true;
-            case CURSEDARMOR: return true;
-            case OVER9K: return true;
-            case SWORD: return true;
-            default: return false;
-        }
-    }
-
     public Ranger() {
         profession = HeroProfession.RANGER;
         hitpoints = 100;

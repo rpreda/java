@@ -25,6 +25,9 @@ public abstract class BaseItem {
         return name;
     }
 
+    public int getMinimumLevel(){
+        return minimumLevel;
+    }
     public abstract boolean equals(Object obj);
     public abstract int hashCode();
 }

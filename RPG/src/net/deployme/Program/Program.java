@@ -10,6 +10,8 @@ public class Program {
 
         System.out.println("10 " + swordTest.computeDamageIncrease(10));
         System.out.println("10 " + chest.computeReduction(10));
+        Guardian guard = new Guardian();
+
 
         /*Elementalist ele = new Elementalist();
         Guardian guard = new Guardian();
