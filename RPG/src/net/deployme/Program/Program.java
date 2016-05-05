@@ -1,9 +1,17 @@
 package net.deployme.Program;
 import net.deployme.Characters.Hero.*;
+import net.deployme.Items.Armor.AdeptChest;
+import net.deployme.Items.Weapons.Sword;
 
 public class Program {
     public static void main(String args[]) {
-        Elementalist ele = new Elementalist();
+        Sword swordTest = new Sword();
+        AdeptChest chest = new AdeptChest();
+
+        System.out.println("10 " + swordTest.computeDamageIncrease(10));
+        System.out.println("10 " + chest.computeReduction(10));
+
+        /*Elementalist ele = new Elementalist();
         Guardian guard = new Guardian();
         Ranger rang = new Ranger();
         Warrior warr = new Warrior();
@@ -22,6 +30,6 @@ public class Program {
         warr.takeDamage(100);
         System.out.println(warr + " " + warr.dealDamage());
         warr.takeDamage(100);
-        System.out.println(warr + " " + warr.dealDamage());
+        System.out.println(warr + " " + warr.dealDamage());*/
     }
 }
