@@ -6,6 +6,8 @@ import net.deployme.Characters.Hero.BaseHero;
 import net.deployme.GameComponents.GameMap;
 import net.deployme.GameComponents.WorldObject;
 
+import java.util.Scanner;
+
 public class TutorialLevel {
     WorldObject player;
     GameMap map;
@@ -17,9 +19,6 @@ public class TutorialLevel {
     }
 
     public void startMission() {
-        while (map.enemyCount() > 1)
-        {
-            
-        }
+        map.printMap();
     }
 }

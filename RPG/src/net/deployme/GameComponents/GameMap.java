@@ -27,6 +27,11 @@ public class GameMap {//this should be restructured later
         for(WorldObject obj : items)
             buffer[obj.posX][obj.posY] = '^';
         buffer[player.posX][player.posY] = '*';
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++)
+                System.out.print(buffer[i][j]);
+            System.out.println();
+        }
     }
 
     public boolean addItem(WorldObject obj) {

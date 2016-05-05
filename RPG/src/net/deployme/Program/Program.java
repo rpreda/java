@@ -4,6 +4,7 @@ import net.deployme.Characters.Hero.*;
 import net.deployme.Items.Armor.AdeptChest;
 import net.deployme.Items.Armor.AdeptHelm;
 import net.deployme.Items.Weapons.Sword;
+import net.deployme.Quests.TutorialLevel;
 
 public class Program {
     public static void main(String args[]) {
@@ -11,7 +12,9 @@ public class Program {
         Bandit testBandit = new Bandit();
         AdeptHelm helm = new AdeptHelm();
         AdeptChest chest = new AdeptChest();
-
+        Elementalist elem = new Elementalist();
+        TutorialLevel tut = new TutorialLevel(elem);
+        tut.startMission();
         /*
         System.out.println("10 " + swordTest.computeDamageIncrease(10));
         System.out.println("10 " + chest.computeReduction(10));
