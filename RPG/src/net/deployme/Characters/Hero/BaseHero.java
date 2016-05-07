@@ -1,4 +1,5 @@
 package net.deployme.Characters.Hero;
+import com.sun.xml.internal.rngom.parse.host.Base;
 import net.deployme.Items.Armor.BaseArmor;
 import net.deployme.Items.BaseItem;
 import net.deployme.Items.Weapons.BaseWeapon;
@@ -7,7 +8,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class BaseHero {
+public abstract class BaseHero implements java.io.Serializable{
+
+    private class InvetoryFullException extends Exception {
+        @Override
+        public String getMessage(){
+            return "Failed to add item to inventory because it is already full";
+        }
+    }
+
+    private class WrongItemLevelException extends Exception {
+        @Override
+        public String getMessage(){
+            return "Failed to add item to inventory because it's level is too big";
+        }
+    }
 
     public enum HeroProfession {
         RANGER, ELEMENTALIST, WARRIOR, GUARDIAN
@@ -16,7 +31,7 @@ public abstract class BaseHero {
     //Fields have to be initialised by hero type
     protected int hitpoints;
     protected static int idIndex = 1;
-    protected int id;
+    protected transient int id;
     protected int maxHp;
     protected int baseDamage;
     protected int level = 1;
@@ -24,8 +39,46 @@ public abstract class BaseHero {
     private BaseWeapon weapon;
     private List<BaseArmor> gear = new ArrayList<>();
 
+    private int invetoryLimit = 10;
+    private List<BaseItem> inventory = new ArrayList<>();
+
     protected HeroProfession profession;
 
+    BaseHero() {
+        id = idIndex++;
+    }
+
+    /** GET: **/
+    public int getHitpoints() {
+        return hitpoints;
+    }
+    public int getId() {
+        return id;
+    }
+    public int getMaxHitpoints() { return maxHp; }
+    public int getBaseDamage() { return baseDamage; }
+    public int getLevel() { return level; }
+    public int getArmor() { return armor; }
+    public BaseWeapon getWeapon() { return weapon; }
+    public List<BaseArmor> getGear() { return gear; }
+    public List<BaseItem> getInventory() { return inventory; }
+    /** ENDGET **/
+
+    public void fixId() {
+        id = idIndex++;
+    }
+
+    public boolean removeInventoryItem(BaseItem item) {
+        return inventory.remove(item);
+    }
+
+    public void addInventoryItem(BaseItem item) throws WrongItemLevelException, InvetoryFullException{
+        if (item.getMinimumLevel() > level)
+            throw new WrongItemLevelException();
+        if (!(inventory.size() < invetoryLimit))
+            throw new InvetoryFullException();
+        inventory.add(item);
+    }
 
     public int hashCode() {
         return this.id + this.hitpoints;
@@ -35,14 +88,6 @@ public abstract class BaseHero {
         if (obj == null)
             return false;
         return obj instanceof BaseHero && ((BaseHero) obj).getId() == this.id;
-    }
-
-    public BaseHero() {
-        id = idIndex++;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String toString() {
@@ -64,7 +109,7 @@ public abstract class BaseHero {
         return damageDealt;
     }
 
-    public boolean loseItem(int id) {//lose by item id returns false if item not found
+    public boolean loseGear(int id) {//lose by item id returns false if item not found
         if (weapon != null && weapon.getId() == id) {
             weapon = null;
             return true;
@@ -95,7 +140,7 @@ public abstract class BaseHero {
         return false;
     }
 
-    public boolean getItem(BaseItem item) {//true if item added false else
+    public boolean obtainGear(BaseItem item) {//true if item added false else
         if (item != null && item.getMinimumLevel() <= this.level) {
             if (item instanceof BaseWeapon) {
                 weapon = (BaseWeapon)item;
@@ -116,11 +161,9 @@ public abstract class BaseHero {
         return false;
     }
 
-    public int getHitpoints() {
-        return hitpoints;
-    }
     public  void levelDown() {
         if (level > 1) {
+            invetoryLimit -= 2;
             level--;
             maxHp = level * 100;
             baseDamage -= 10;
@@ -133,6 +176,7 @@ public abstract class BaseHero {
         level++;
         maxHp = level * 100;
         baseDamage += 10;
+        invetoryLimit += 2;
     }
 
     public boolean isDead() {

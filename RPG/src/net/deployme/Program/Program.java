@@ -6,6 +6,11 @@ import net.deployme.Items.Armor.AdeptHelm;
 import net.deployme.Items.Weapons.Sword;
 import net.deployme.Quests.TutorialLevel;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class Program {
     public static void main(String args[]) {
         Sword swordTest = new Sword();
@@ -13,8 +18,34 @@ public class Program {
         AdeptHelm helm = new AdeptHelm();
         AdeptChest chest = new AdeptChest();
         Elementalist elem = new Elementalist();
-        TutorialLevel tut = new TutorialLevel(elem);
-        tut.startMission();
+        //TutorialLevel tut = new TutorialLevel(elem);
+        //tut.startMission();
+        elem.obtainGear(helm);
+        elem.levelUp();
+        elem.levelUp();
+        BaseHero deserialized = null;
+
+        FileOutputStream fileOut;
+        try {
+            fileOut = new FileOutputStream("/Users/rpreda/hero.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(elem);
+            out.close();
+            fileOut.close();
+        }
+        catch (Exception e) {}
+
+        try {
+            FileInputStream fileIn = new FileInputStream("/Users/rpreda/hero.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            (deserialized = (Elementalist)in.readObject()).fixId();
+            in.close();
+            fileIn.close();
+
+        } catch (Exception e) {System.out.println(e.getMessage());}
+        System.out.println(elem);
+        if (deserialized != null)
+            System.out.println(deserialized);
         /*
         System.out.println("10 " + swordTest.computeDamageIncrease(10));
         System.out.println("10 " + chest.computeReduction(10));

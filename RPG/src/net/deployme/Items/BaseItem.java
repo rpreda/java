@@ -1,6 +1,6 @@
 package net.deployme.Items;
 
-public abstract class BaseItem {
+public abstract class BaseItem implements java.io.Serializable {
 
     private static int idIndex = 1;
     private int minimumLevel;
