@@ -8,6 +8,10 @@ public class GameMap {//this should be restructured later
     private List<WorldObject> enemies = new ArrayList<>();
     private List<WorldObject> items = new ArrayList<>();
 
+    public GameMap(WorldObject player) {
+        this.player = player;
+    }
+
     public GameMap(int mapSize, WorldObject player) {
         this.mapSize = mapSize;
         this.player = player;

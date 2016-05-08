@@ -3,7 +3,10 @@ import com.sun.xml.internal.rngom.parse.host.Base;
 import net.deployme.Items.Armor.BaseArmor;
 import net.deployme.Items.BaseItem;
 import net.deployme.Items.Weapons.BaseWeapon;
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -59,10 +62,23 @@ public abstract class BaseHero implements java.io.Serializable{
     public int getBaseDamage() { return baseDamage; }
     public int getLevel() { return level; }
     public int getArmor() { return armor; }
-    public BaseWeapon getWeapon() { return weapon; }
-    public List<BaseArmor> getGear() { return gear; }
-    public List<BaseItem> getInventory() { return inventory; }
     /** ENDGET **/
+
+    public static BaseHero constructFromFile(String path) throws Exception {
+        BaseHero deserialized;
+        FileInputStream fileIn = new FileInputStream(path);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        (deserialized = (BaseHero)in.readObject()).fixId();
+        return deserialized;
+    }
+
+    public void saveToFile(String path) throws Exception{
+        FileOutputStream fileOut = new FileOutputStream(path);
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(this);
+        out.close();
+        fileOut.close();
+    }
 
     public void fixId() {
         id = idIndex++;
@@ -151,7 +167,6 @@ public abstract class BaseHero implements java.io.Serializable{
                     BaseArmor gearPiece = iterator.next();
                     if (gearPiece.getSlot() == ((BaseArmor) item).getSlot()) {
                         iterator.remove();
-                        //System.out.println("Duplicate found, removing it");
                     }
                 }
                 gear.add((BaseArmor)item);

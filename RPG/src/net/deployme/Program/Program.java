@@ -25,22 +25,15 @@ public class Program {
         elem.levelUp();
         BaseHero deserialized = null;
 
+        elem.obtainGear(chest);
         FileOutputStream fileOut;
         try {
-            fileOut = new FileOutputStream("/Users/rpreda/hero.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(elem);
-            out.close();
-            fileOut.close();
+            elem.saveToFile("/Users/rpreda/heroSave.ser");
         }
         catch (Exception e) {}
 
         try {
-            FileInputStream fileIn = new FileInputStream("/Users/rpreda/hero.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            (deserialized = (Elementalist)in.readObject()).fixId();
-            in.close();
-            fileIn.close();
+            deserialized = BaseHero.constructFromFile("/Users/rpreda/heroSave.ser");
 
         } catch (Exception e) {System.out.println(e.getMessage());}
         System.out.println(elem);
