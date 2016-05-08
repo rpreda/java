@@ -1,6 +1,8 @@
 package net.deployme.Program;
 import net.deployme.Characters.Enemy.Bandit;
 import net.deployme.Characters.Hero.*;
+import net.deployme.GameComponents.GameMap;
+import net.deployme.GameComponents.WorldObject;
 import net.deployme.Items.Armor.AdeptChest;
 import net.deployme.Items.Armor.AdeptHelm;
 import net.deployme.Items.Weapons.Sword;
@@ -23,7 +25,15 @@ public class Program {
         elem.obtainGear(helm);
         elem.levelUp();
         elem.levelUp();
-        BaseHero deserialized = null;
+        GameMap testMap = null;
+        try {
+            testMap = new GameMap(new WorldObject(1, 1, elem), "/Users/rpreda/testMapt.map");
+        }
+        catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        testMap.printMap();
+        /** BaseHero deserialized = null; //Serialization test for the hero objects
 
         elem.obtainGear(chest);
         FileOutputStream fileOut;
@@ -38,7 +48,7 @@ public class Program {
         } catch (Exception e) {System.out.println(e.getMessage());}
         System.out.println(elem);
         if (deserialized != null)
-            System.out.println(deserialized);
+            System.out.println(deserialized); **/
         /*
         System.out.println("10 " + swordTest.computeDamageIncrease(10));
         System.out.println("10 " + chest.computeReduction(10));
