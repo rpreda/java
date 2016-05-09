@@ -32,6 +32,7 @@ public abstract class BaseHero implements java.io.Serializable{
     }
 
     //Fields have to be initialised by hero type
+    protected String name;
     protected int hitpoints;
     protected static int idIndex = 1;
     protected transient int id;
@@ -47,11 +48,14 @@ public abstract class BaseHero implements java.io.Serializable{
 
     protected HeroProfession profession;
 
-    BaseHero() {
+    BaseHero(int level, String name) {
         id = idIndex++;
+        this.level = level;
+        this.name = name;
     }
 
     /** GET: **/
+    public String getName() {return name;}
     public int getHitpoints() {
         return hitpoints;
     }
@@ -64,12 +68,12 @@ public abstract class BaseHero implements java.io.Serializable{
     public int getArmor() { return armor; }
     /** ENDGET **/
 
-    public static BaseHero HeroFactory(String heroType, int level) {//reflection not really worth it here?
+    public static BaseHero HeroFactory(String heroType, int level, String name) {//reflection not really worth it here?
         switch (heroType) {
-            case "Elementalist": return new Elementalist(level);
-            case "Guardian": return new Guardian(level);
-            case "Ranger": return new Ranger(level);
-            case "Warrior": return new Warrior(level);
+            case "Elementalist": return new Elementalist(level, name);
+            case "Guardian": return new Guardian(level, name);
+            case "Ranger": return new Ranger(level, name);
+            case "Warrior": return new Warrior(level, name);
             default: return null;
         }
     }

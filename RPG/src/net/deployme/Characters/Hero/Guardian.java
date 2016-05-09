@@ -5,7 +5,8 @@ package net.deployme.Characters.Hero;
  */
 public class Guardian extends BaseHero {
 
-    public Guardian(int level) {
+    public Guardian(int level, String name) {
+        super(level, name);
         profession = HeroProfession.GUARDIAN;
         hitpoints = 140;
         maxHp = 140;
