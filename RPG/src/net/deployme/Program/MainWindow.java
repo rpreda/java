@@ -50,7 +50,4 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify
-    // End of variables declaration
 }
