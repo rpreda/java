@@ -5,12 +5,12 @@ package net.deployme.Characters.Hero;
  */
 public class Elementalist extends BaseHero {
 
-    public Elementalist() {
+    public Elementalist(int level) {
         profession = HeroProfession.ELEMENTALIST;
         hitpoints = 110;
         maxHp = 110;
         armor = 12;
         baseDamage = 30;
-        level = 1;
+        this.level = level;
     }
 }

@@ -13,7 +13,20 @@ public abstract class BaseEnemy {
     protected int damageReduction;//between 1 to 100
     protected EnemyProfession profession;
 
-    public BaseEnemy() {
+    public static BaseEnemy enemyFactory(String type, int dmg, int hp, int armor) {
+        switch (type) {
+            case "Bandit": return new Bandit(dmg, hp, armor);
+            case "Monster": return new Monster(dmg, hp, armor);
+            case "Rogue": return new Rogue(dmg, hp, armor);
+            case "Warlock": return new Warlock(dmg, hp, armor);
+            default: return null;
+        }
+    }
+
+    public BaseEnemy(int damage, int hitpoints, int damageReduction) {
+        this.baseDamage = damage;
+        this.hitpoints = hitpoints;
+        this.damageReduction = damageReduction;
         id = idIndex++;
     }
 

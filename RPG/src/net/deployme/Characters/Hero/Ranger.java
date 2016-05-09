@@ -5,13 +5,13 @@ package net.deployme.Characters.Hero;
  */
 public class Ranger extends BaseHero {
 
-    public Ranger() {
+    public Ranger(int level) {
         profession = HeroProfession.RANGER;
         hitpoints = 100;
         maxHp = 100;
         armor = 15;
         baseDamage = 11;
-        level = 1;
+        this.level = level;
 
     }
 }

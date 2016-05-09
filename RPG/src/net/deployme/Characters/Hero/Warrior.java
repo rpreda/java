@@ -5,12 +5,12 @@ package net.deployme.Characters.Hero;
  */
 public class Warrior extends BaseHero {
 
-    public Warrior() {
+    public Warrior(int level) {
         profession = HeroProfession.WARRIOR;
         hitpoints = 130;
         maxHp = 130;
         armor = 20;
         baseDamage = 15;
-        level = 1;
+        this.level = level;
     }
 }

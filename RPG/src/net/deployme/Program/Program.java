@@ -6,8 +6,6 @@ import net.deployme.GameComponents.WorldObject;
 import net.deployme.Items.Armor.AdeptChest;
 import net.deployme.Items.Armor.AdeptHelm;
 import net.deployme.Items.Weapons.Sword;
-import net.deployme.Quests.TutorialLevel;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -16,10 +14,10 @@ import java.io.ObjectOutputStream;
 public class Program {
     public static void main(String args[]) {
         Sword swordTest = new Sword();
-        Bandit testBandit = new Bandit();
+        Bandit testBandit = new Bandit(10, 100, 10);
         AdeptHelm helm = new AdeptHelm();
         AdeptChest chest = new AdeptChest();
-        Elementalist elem = new Elementalist();
+        Elementalist elem = new Elementalist(1);
         //TutorialLevel tut = new TutorialLevel(elem);
         //tut.startMission();
         elem.obtainGear(helm);
@@ -31,6 +29,7 @@ public class Program {
         }
         catch (Exception e) {
             System.out.print(e.getMessage());
+            return;
         }
         testMap.printMap();
         /** BaseHero deserialized = null; //Serialization test for the hero objects

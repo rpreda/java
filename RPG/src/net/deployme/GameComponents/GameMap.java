@@ -1,8 +1,5 @@
 package net.deployme.GameComponents;
-import net.deployme.Characters.Enemy.Bandit;
-import net.deployme.Characters.Enemy.Monster;
-import net.deployme.Characters.Enemy.Rogue;
-import net.deployme.Characters.Enemy.Warlock;
+import net.deployme.Characters.Enemy.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +12,16 @@ public class GameMap {//this should be restructured later
     private List<WorldObject> enemies = new ArrayList<>();
     private List<WorldObject> items = new ArrayList<>();
 
-    private WorldObject getEnemy(String[] line) {
-        if (line.length == 3)
-            switch (line[0]) {
-                case "BANDIT": return new WorldObject(Integer.parseInt(line[1]), Integer.parseInt(line[2]), new Bandit());
-                case "ROGUE": return new WorldObject(Integer.parseInt(line[1]), Integer.parseInt(line[2]), new Rogue());
-                case "WARLOCK": return new WorldObject(Integer.parseInt(line[1]), Integer.parseInt(line[2]), new Warlock());
-                case "MONSTER": return new WorldObject(Integer.parseInt(line[1]), Integer.parseInt(line[2]), new Monster(1));
-            }
-        return null;
+    private WorldObject getEnemy(String[] line) throws Exception{
+        int x = Integer.parseInt(line[1]);
+        int y = Integer.parseInt(line[2]);
+        int damage = Integer.parseInt(line[3]);
+        int hp = Integer.parseInt(line[4]);
+        int armor = Integer.parseInt(line[5]);
+        BaseEnemy enemy = BaseEnemy.enemyFactory(line[0], damage, hp, armor);
+        if (enemy == null)
+            throw new Exception("enemyFactory returned a null object, check your input file and the data in getEnemy!");
+        return new WorldObject(x, y, enemy);
     }
 
     private void loadFromFile(String filePath) throws Exception {

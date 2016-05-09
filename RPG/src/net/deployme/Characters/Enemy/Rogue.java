@@ -4,10 +4,8 @@ import java.util.Random;
  * Created by rpreda on 04/05/16.
  */
 public class Rogue extends BaseEnemy {
-    public Rogue() {
-        hitpoints = 65;
-        baseDamage = 30;
-        damageReduction = 2;
+    public Rogue(int damage, int hp, int armor) {
+        super(damage, hp, armor);
         profession = EnemyProfession.ROGUE;
     }
 

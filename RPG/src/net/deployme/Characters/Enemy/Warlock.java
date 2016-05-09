@@ -8,10 +8,8 @@ import java.util.Random;
 public class Warlock extends BaseEnemy{
     private final int max_hp = 100;
 
-    public Warlock() {
-        hitpoints = 100;
-        baseDamage = 20;
-        damageReduction = 3;
+    public Warlock(int damage, int hp, int armor) {
+        super(damage, hp, armor);
         profession = EnemyProfession.WARLOCK;
     }
 

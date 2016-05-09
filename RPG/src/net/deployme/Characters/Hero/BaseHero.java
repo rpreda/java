@@ -64,6 +64,16 @@ public abstract class BaseHero implements java.io.Serializable{
     public int getArmor() { return armor; }
     /** ENDGET **/
 
+    public static BaseHero HeroFactory(String heroType, int level) {//reflection not really worth it here?
+        switch (heroType) {
+            case "Elementalist": return new Elementalist(level);
+            case "Guardian": return new Guardian(level);
+            case "Ranger": return new Ranger(level);
+            case "Warrior": return new Warrior(level);
+            default: return null;
+        }
+    }
+
     public static BaseHero constructFromFile(String path) throws Exception {
         BaseHero deserialized;
         FileInputStream fileIn = new FileInputStream(path);
@@ -179,6 +189,7 @@ public abstract class BaseHero implements java.io.Serializable{
     public  void levelDown() {
         if (level > 1) {
             invetoryLimit -= 2;
+            armor -= 10;
             level--;
             maxHp = level * 100;
             baseDamage -= 10;
@@ -192,6 +203,7 @@ public abstract class BaseHero implements java.io.Serializable{
         maxHp = level * 100;
         baseDamage += 10;
         invetoryLimit += 2;
+        armor += 10;
     }
 
     public boolean isDead() {
