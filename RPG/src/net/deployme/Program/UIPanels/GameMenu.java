@@ -3,6 +3,9 @@ package net.deployme.Program.UIPanels;
 import net.deployme.Program.MainWindow;
 import sun.applet.Main;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class GameMenu extends javax.swing.JPanel {
     public GameMenu() {
         initComponents();
@@ -90,11 +93,15 @@ public class GameMenu extends javax.swing.JPanel {
     }
 
     private void submit(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
     }
 
     private void preview(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        try {
+            byte[] encoded = Files.readAllBytes(Paths.get(jTextField1.getText()));
+            jTextArea1.setText(new String(encoded));
+        } catch (Exception e) {
+            MainWindow.getInstance().notifyUser(e.getMessage());
+        }
     }
 
     private void saveHero(java.awt.event.ActionEvent evt) {

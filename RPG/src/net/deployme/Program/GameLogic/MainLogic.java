@@ -30,7 +30,6 @@ public class MainLogic {
 
     public void showGameMenu() {
         MainWindow.getInstance().changePanel(new GameMenu());
-        //MainWindow.getInstance().notifyUser("Game started!");
     }
 
     public void loadGame(String path) {
@@ -46,7 +45,7 @@ public class MainLogic {
 
     public void saveHero(String path) {
         try {
-            player.saveToFile("~/hero.save");
+            player.saveToFile(path);
         }
         catch (Exception e) {
             e.printStackTrace();
