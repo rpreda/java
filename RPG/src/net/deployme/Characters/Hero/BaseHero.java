@@ -76,6 +76,7 @@ public abstract class BaseHero implements java.io.Serializable{
             case "Warrior": return new Warrior(level, name);
             default: return null;
         }
+        //return null;
     }
 
     public static BaseHero constructFromFile(String path) throws Exception {

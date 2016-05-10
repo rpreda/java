@@ -19,6 +19,7 @@ public class MainWindow extends javax.swing.JFrame {
     public static MainWindow getInstance() {
         if (instance == null) {
             instance = new MainWindow();
+            instance.controller = MainLogic.getInstance();
             instance.changePanel(new StartScreen());
             return instance;
         }
@@ -26,7 +27,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     public void changePanel(JPanel panel) {
-        controller = new MainLogic();
         JPanel contents = (JPanel)getContentPane();
         contents.removeAll();
         contents.add(panel);
