@@ -1,6 +1,7 @@
 package net.deployme.Program.UIPanels;
 
 import net.deployme.Program.MainWindow;
+import sun.applet.Main;
 
 public class StartScreen extends javax.swing.JPanel {
     public StartScreen() {
@@ -64,13 +65,12 @@ public class StartScreen extends javax.swing.JPanel {
     }
 
     private void newGame(java.awt.event.ActionEvent evt) {//switch to character creation view
-        //TODO: rename the functions, this is the new game one
+        MainWindow.getInstance().getController().newGame();
     }
 
     private void loadGame(java.awt.event.ActionEvent evt) {
-        // TODO rename the functions, this is the load game one
+        MainWindow.getInstance().getController().loadGame(jTextField1.getText());
     }
-    
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
