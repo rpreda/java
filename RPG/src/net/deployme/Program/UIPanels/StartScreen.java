@@ -1,7 +1,6 @@
 package net.deployme.Program.UIPanels;
 
 import net.deployme.Program.MainWindow;
-import sun.applet.Main;
 
 public class StartScreen extends javax.swing.JPanel {
     public StartScreen() {

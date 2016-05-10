@@ -1,18 +1,18 @@
 package net.deployme.Program;
-import net.deployme.Program.UILogic.UIController;
+import net.deployme.Program.GameLogic.MainLogic;
 import net.deployme.Program.UIPanels.*;
 import javax.swing.*;
 
 public class MainWindow extends javax.swing.JFrame {
     private static MainWindow instance = null;
     private JPanel currentContent = null;
-    private UIController controller;
+    private MainLogic controller;
 
     public void notifyUser(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 
-    public UIController getController() {
+    public MainLogic getController() {
         return controller;
     }
 
@@ -26,7 +26,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     public void changePanel(JPanel panel) {
-        controller = new UIController();
+        controller = new MainLogic();
         JPanel contents = (JPanel)getContentPane();
         contents.removeAll();
         contents.add(panel);
@@ -35,7 +35,6 @@ public class MainWindow extends javax.swing.JFrame {
         currentContent = panel;//might not be needed
         this.pack();
     }
-
     private MainWindow() {
         initComponents();
     }

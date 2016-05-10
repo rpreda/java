@@ -1,11 +1,11 @@
-package net.deployme.Program.UILogic;
+package net.deployme.Program.GameLogic;
 
 import net.deployme.Characters.Hero.BaseHero;
 import net.deployme.Program.MainWindow;
 import net.deployme.Program.UIPanels.CreateHero;
 
 
-public class UIController {
+public class MainLogic {
     private BaseHero player;
     public BaseHero getHero() {
         return player;
@@ -23,7 +23,6 @@ public class UIController {
         try {
             player = BaseHero.constructFromFile(path);
             showGameMenu();
-            //TODO load the ui element for playing the game
         }
         catch (Exception e)
         {
