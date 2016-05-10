@@ -1,5 +1,6 @@
 package net.deployme.Program.UIPanels;
 
+import net.deployme.Characters.Hero.BaseHero;
 import net.deployme.GameComponents.GameMap;
 import net.deployme.Program.MainWindow;
 
@@ -49,7 +50,7 @@ public class GameplayWindow extends javax.swing.JPanel implements Observer {
                             g.setColor(Color.green);
                             break;
                         default:
-                            g.setColor(Color.DARK_GRAY);
+                            g.setColor(Color.white);
                             break;
                     }
                     g.fillOval(x, y, circleRadius, circleRadius);
@@ -65,6 +66,8 @@ public class GameplayWindow extends javax.swing.JPanel implements Observer {
             GameMap map = (GameMap) observable;
             if (map.won)
                 MainWindow.getInstance().notifyUser("WIN");
+            hitpoints.setText(Integer.toString(((BaseHero)map.player.getEntity()).getHitpoints()));
+            avgDamage.setText(Integer.toString(((BaseHero)map.player.getEntity()).dealDamage()));
             mapSize = map.getMapSize();
             mapImage = map.imageMap();
         }
