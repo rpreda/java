@@ -93,6 +93,7 @@ public class GameMenu extends javax.swing.JPanel {
     }
 
     private void submit(java.awt.event.ActionEvent evt) {
+        MainWindow.getInstance().getController().loadLevel(jTextField1.getText());
     }
 
     private void preview(java.awt.event.ActionEvent evt) {

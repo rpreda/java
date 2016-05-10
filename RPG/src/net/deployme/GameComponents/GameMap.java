@@ -6,11 +6,16 @@ import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class GameMap {//this should be restructured later
+public class GameMap extends net.deployme.GameComponents.Observable{//this should be restructured later
     private int mapSize;
+    public boolean won = false;
     public WorldObject player;
     private List<WorldObject> enemies = new ArrayList<>();
     private List<WorldObject> items = new ArrayList<>();
+
+    public int getMapSize() {
+        return mapSize;
+    }
 
     private WorldObject getEnemy(String[] line) throws Exception{
         int x = Integer.parseInt(line[1]);
@@ -46,30 +51,31 @@ public class GameMap {//this should be restructured later
         this.player = player;
     }
 
-    public void printMap() {
-        // * player
-        // @ enemy
-        // ^ item
-        // 0 empty space
-        char[][] buffer = new char[mapSize + 1][mapSize + 1];
+    public int[][] imageMap() {
+        //0 empty
+        //1 enemy
+        //2 item
+        //3 player
+        int[][] buffer = new int[mapSize][mapSize ];
         for (int i = 0; i < mapSize; i++)
             for (int j = 0; j < mapSize; j++)
-                buffer[i][j] = '0';
+                buffer[i][j] = 0;
         for(WorldObject obj : enemies)
-            buffer[obj.posX][obj.posY] = '@';
+            buffer[obj.posX][obj.posY] = 1;
         for(WorldObject obj : items)
-            buffer[obj.posX][obj.posY] = '^';
-        buffer[player.posX][player.posY] = '*';
-        for (int i = 0; i < mapSize; i++) {
+            buffer[obj.posX][obj.posY] = 2;
+        buffer[player.posX][player.posY] = 3;
+        /*for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++)
                 System.out.print(buffer[i][j]);
             System.out.println();
-        }
+        }*/
+        return buffer;
     }
 
     public boolean addItem(WorldObject obj) {
         if (!items.contains(obj)) {
-            items.add(obj);;
+            items.add(obj);
             return true;
         }
         return false;

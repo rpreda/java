@@ -20,6 +20,7 @@ public class MainWindow extends javax.swing.JFrame {
         if (instance == null) {
             instance = new MainWindow();
             instance.controller = MainLogic.getInstance();
+            //instance.changePanel(new DrawTest());
             instance.changePanel(new StartScreen());
             return instance;
         }

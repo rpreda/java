@@ -1,13 +1,16 @@
 package net.deployme.Program.GameLogic;
 import net.deployme.Characters.Hero.BaseHero;
 import net.deployme.Characters.Hero.Warrior;
+import net.deployme.GameComponents.GameMap;
+import net.deployme.GameComponents.WorldObject;
 import net.deployme.Program.MainWindow;
 import net.deployme.Program.UIPanels.CreateHero;
 import net.deployme.Program.UIPanels.GameMenu;
-
+import net.deployme.Program.UIPanels.GameplayWindow;
 
 public class MainLogic {
     private BaseHero player;
+    private GameMap currentLevel;
     private static MainLogic instance;
 
     private MainLogic() {
@@ -20,6 +23,38 @@ public class MainLogic {
         return instance;
     }
 
+    public void movePlayer(int dir) {
+
+        //1 up
+        //2 down
+        //3 left
+        //4 right
+        switch (dir) {
+            case 1:  if(currentLevel.player.posX > 0)
+                currentLevel.player.posX -= 1;
+            else
+                currentLevel.won = true;
+                break;
+            case 2:  if(currentLevel.player.posX < currentLevel.getMapSize() - 1)
+                currentLevel.player.posX += 1;
+            else
+                currentLevel.won = true;
+                break;
+            case 3:  if(currentLevel.player.posY > 0)
+                currentLevel.player.posY -= 1;
+            else
+                currentLevel.won = true;
+                break;
+            case 4:  if(currentLevel.player.posY < currentLevel.getMapSize() - 1)
+                currentLevel.player.posY += 1;
+            else
+                currentLevel.won = true;
+                break;
+        }
+        currentLevel.notifyObservers();
+
+    }
+
     public BaseHero getHero() {
         return player;
     }
@@ -28,8 +63,27 @@ public class MainLogic {
         MainWindow.getInstance().changePanel(new CreateHero());
     }
 
+    public void notifyTest() {
+        currentLevel.notifyObservers();
+    }
+
     public void showGameMenu() {
         MainWindow.getInstance().changePanel(new GameMenu());
+    }
+
+    public void loadLevel(String mapPath) {
+        try {
+            GameplayWindow view = new GameplayWindow();
+            currentLevel = new GameMap(new WorldObject(10, 10, player), mapPath);
+            currentLevel.player.posY = currentLevel.getMapSize() / 2;
+            currentLevel.player.posX = currentLevel.getMapSize() / 2;
+            MainWindow.getInstance().changePanel(view);
+            currentLevel.registerObserver(view);
+            currentLevel.notifyObservers();
+        }
+        catch (Exception e) {
+            MainWindow.getInstance().notifyUser(e.getMessage());
+        }
     }
 
     public void loadGame(String path) {
