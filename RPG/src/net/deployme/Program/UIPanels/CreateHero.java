@@ -150,7 +150,7 @@ public class CreateHero extends javax.swing.JPanel {
             type = "Guardian";
 
         if (MainWindow.getInstance().getController().initHero(jTextField1.getText(), type)) {
-            //Move to gameplay
+            MainWindow.getInstance().getController().showGameMenu();
         }
         //otherwise do nothing
     }

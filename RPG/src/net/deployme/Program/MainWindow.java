@@ -1,5 +1,5 @@
 package net.deployme.Program;
-import net.deployme.Program.GameLogic.UIController;
+import net.deployme.Program.UILogic.UIController;
 import net.deployme.Program.UIPanels.*;
 import javax.swing.*;
 
@@ -8,7 +8,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel currentContent = null;
     private UIController controller;
 
-    public void notifyUSer(String message) {
+    public void notifyUser(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 

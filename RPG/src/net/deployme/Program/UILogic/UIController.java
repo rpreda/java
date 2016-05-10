@@ -1,4 +1,4 @@
-package net.deployme.Program.GameLogic;
+package net.deployme.Program.UILogic;
 
 import net.deployme.Characters.Hero.BaseHero;
 import net.deployme.Program.MainWindow;
@@ -15,19 +15,19 @@ public class UIController {
         MainWindow.getInstance().changePanel(new CreateHero());
     }
 
-    public void initGame() {
-
+    public void showGameMenu() {
+        MainWindow.getInstance().notifyUser("Game started!");
     }
 
     public void loadGame(String path) {
         try {
             player = BaseHero.constructFromFile(path);
-            initGame();
+            showGameMenu();
             //TODO load the ui element for playing the game
         }
         catch (Exception e)
         {
-            MainWindow.getInstance().notifyUSer(e.getMessage());
+            MainWindow.getInstance().notifyUser(e.getMessage());
         }
     }
 
@@ -35,7 +35,7 @@ public class UIController {
         if (name.length() < 20 && name.length() > 0) {
             player = BaseHero.HeroFactory(type, 1, name);
             if (player == null)
-                MainWindow.getInstance().notifyUSer("Error in generating hero for type: " + type + " and name " + name);
+                MainWindow.getInstance().notifyUser("Error in generating hero for type: " + type + " and name " + name);
             return true;
         }
         return false;
