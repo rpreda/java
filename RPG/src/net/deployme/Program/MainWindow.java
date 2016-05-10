@@ -1,24 +1,45 @@
 package net.deployme.Program;
-import net.deployme.Program.UIPanels.TestPanel;
-
+import net.deployme.Program.GameLogic.UIController;
+import net.deployme.Program.UIPanels.*;
 import javax.swing.*;
 
 public class MainWindow extends javax.swing.JFrame {
+    private static MainWindow instance = null;
+    private JPanel currentContent = null;
+    private UIController controller;
+
+    public void notifyUSer(String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
+
+    public UIController getController() {
+        return controller;
+    }
+
+    public static MainWindow getInstance() {
+        if (instance == null) {
+            instance = new MainWindow();
+            instance.changePanel(new StartScreen());
+            return instance;
+        }
+        return instance;
+    }
+
     public void changePanel(JPanel panel) {
+        controller = new UIController();
         JPanel contents = (JPanel)getContentPane();
         contents.removeAll();
         contents.add(panel);
         contents.revalidate();
         contents.repaint();
+        currentContent = panel;//might not be needed
         this.pack();
     }
 
-    public MainWindow() {
+    private MainWindow() {
         initComponents();
-        changePanel(new TestPanel());//Here I load a test panel to see that the UI works
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -26,6 +47,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
+        //theme selection code
         /** Apply Nimbus theme if found **/
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -43,10 +65,9 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
         java.awt.EventQueue.invokeLater(new Runnable() {//what is a lambda function O.o?
             public void run() {
-                new MainWindow().setVisible(true);
+                MainWindow.getInstance().setVisible(true);
             }
         });
     }
