@@ -70,6 +70,8 @@ public class GameplayWindow extends javax.swing.JPanel implements Observer {
                 hideMove();
                 showFightFlee();
                 enemyInfo.setText(map.enemyDamage);
+                if (!map.canFlee)
+                    flee.setVisible(false);
             }
             else {
                 hideFightFlee();

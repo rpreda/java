@@ -9,7 +9,7 @@ import java.io.FileReader;
 public class GameMap extends net.deployme.GameComponents.Observable{//this should be restructured later
     private int mapSize;
     public boolean won = false;
-    public boolean lost = false;
+    public boolean canFlee = true;
     public boolean fighting;
     public String enemyDamage;
     public WorldObject player;

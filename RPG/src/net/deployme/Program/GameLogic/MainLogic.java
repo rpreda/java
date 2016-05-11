@@ -4,11 +4,14 @@ import net.deployme.Characters.Hero.BaseHero;
 import net.deployme.Characters.Hero.Warrior;
 import net.deployme.GameComponents.GameMap;
 import net.deployme.GameComponents.WorldObject;
+import net.deployme.Items.Weapons.Sword;
 import net.deployme.Program.MainWindow;
 import net.deployme.Program.UIPanels.CreateHero;
 import net.deployme.Program.UIPanels.GameMenu;
 import net.deployme.Program.UIPanels.GameplayWindow;
 import sun.applet.Main;
+
+import java.util.Random;
 
 public class MainLogic {
     private BaseHero player;
@@ -17,6 +20,7 @@ public class MainLogic {
 
     private MainLogic() {
     }
+
     public static MainLogic getInstance() {
         if (instance == null) {
             instance = new MainLogic();
@@ -24,6 +28,7 @@ public class MainLogic {
         }
         return instance;
     }
+
     public void win() {
         MainWindow.getInstance().notifyUser("YOU WON!");
         MainWindow.getInstance().changePanel(new GameMenu());
@@ -80,7 +85,10 @@ public class MainLogic {
         if (currentLevel.enemy.isDead()) {
             currentLevel.enemy = null;
             currentLevel.fighting = false;
+            currentLevel.canFlee = true;
             currentLevel.removeEnemy(currentLevel.getSquareContent(currentLevel.player.posX, currentLevel.player.posY));
+            player.removeWeapon();
+            player.obtainGear(new Sword());//always gets a sword when killing enemy
         }
         else if (player.isDead()) {
             currentLevel = null;
@@ -89,10 +97,16 @@ public class MainLogic {
         }
         currentLevel.notifyObservers();
     }
-    public void fleeEnemy() {//TODO: add a percantage chance to stop enemy from fleeing
-        currentLevel.fighting = false;
-        currentLevel.player.posX = currentLevel.getMapSize() / 2;
-        currentLevel.player.posY = currentLevel.getMapSize() / 2;
+    public void fleeEnemy() {
+        Random rand = new Random();
+        if (10 < rand.nextInt(100)) {//10 percent chance to not be able to flee
+            currentLevel.fighting = false;
+            currentLevel.player.posX = currentLevel.getMapSize() / 2;
+            currentLevel.player.posY = currentLevel.getMapSize() / 2;
+            currentLevel.notifyObservers();
+        }
+        else
+            currentLevel.canFlee = false;
         currentLevel.notifyObservers();
     }
 

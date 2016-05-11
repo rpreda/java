@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainLogic.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainLogic.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/net/deployme/Program/GameLogic/MainLogic.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+              <caret line="109" column="39" selection-start-line="109" selection-start-column="39" selection-end-line="109" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -36,8 +36,8 @@
       <file leaf-file-name="BaseHero.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/deployme/Characters/Hero/BaseHero.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="86" column="30" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
+            <state relative-caret-position="-931">
+              <caret line="93" column="58" selection-start-line="93" selection-start-column="58" selection-end-line="93" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -46,8 +46,8 @@
       <file leaf-file-name="GameplayWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/deployme/Program/UIPanels/GameplayWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="278" column="62" selection-start-line="278" selection-start-column="62" selection-end-line="278" selection-end-column="62" />
+            <state relative-caret-position="269">
+              <caret line="73" column="20" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#showFightFlee#0;class#GameplayWindow#0" expanded="false" />
@@ -60,16 +60,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameMap.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/deployme/GameComponents/GameMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+            <state relative-caret-position="75">
+              <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
               <folding>
-                <element signature="e#646#647#0" expanded="true" />
-                <element signature="e#676#677#0" expanded="true" />
-                <element signature="e#726#727#0" expanded="true" />
-                <element signature="e#763#764#0" expanded="true" />
+                <element signature="e#648#649#0" expanded="true" />
+                <element signature="e#678#679#0" expanded="true" />
+                <element signature="e#728#729#0" expanded="true" />
+                <element signature="e#765#766#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,9 +128,9 @@
         <option value="$PROJECT_DIR$/src/net/deployme/Program/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/net/deployme/Program/UIPanels/GameMenu.java" />
         <option value="$PROJECT_DIR$/src/net/deployme/GameComponents/Observable.java" />
-        <option value="$PROJECT_DIR$/src/net/deployme/Program/UIPanels/GameplayWindow.java" />
-        <option value="$PROJECT_DIR$/src/net/deployme/GameComponents/GameMap.java" />
         <option value="$PROJECT_DIR$/src/net/deployme/Characters/Hero/BaseHero.java" />
+        <option value="$PROJECT_DIR$/src/net/deployme/GameComponents/GameMap.java" />
+        <option value="$PROJECT_DIR$/src/net/deployme/Program/UIPanels/GameplayWindow.java" />
         <option value="$PROJECT_DIR$/src/net/deployme/Program/GameLogic/MainLogic.java" />
       </list>
     </option>
@@ -815,12 +815,12 @@
       <workItem from="1462464914628" duration="23619000" />
       <workItem from="1462860264589" duration="8828000" />
       <workItem from="1462893096714" duration="12007000" />
-      <workItem from="1462947020103" duration="2199000" />
+      <workItem from="1462947020103" duration="2814000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60938000" />
+    <option name="totallyTimeSpent" value="61553000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -834,7 +834,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32802126" sideWeight="0.50390625" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32669324" sideWeight="0.49609375" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32669324" sideWeight="0.49609375" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -914,10 +914,10 @@
         <state relative-caret-position="75">
           <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
           <folding>
-            <element signature="e#646#647#0" expanded="true" />
-            <element signature="e#676#677#0" expanded="true" />
-            <element signature="e#726#727#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#765#766#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1196,18 +1196,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/deployme/Characters/Hero/BaseHero.java">
+    <entry file="file://$PROJECT_DIR$/src/net/deployme/GameComponents/GameMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="86" column="30" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
-          <folding />
+        <state relative-caret-position="75">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding>
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#765#766#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/deployme/Program/UIPanels/GameplayWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="278" column="62" selection-start-line="278" selection-start-column="62" selection-end-line="278" selection-end-column="62" />
+        <state relative-caret-position="269">
+          <caret line="73" column="20" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#showFightFlee#0;class#GameplayWindow#0" expanded="false" />
@@ -1219,24 +1224,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/deployme/Program/GameLogic/MainLogic.java">
+    <entry file="file://$PROJECT_DIR$/src/net/deployme/Characters/Hero/BaseHero.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        <state relative-caret-position="-931">
+          <caret line="93" column="58" selection-start-line="93" selection-start-column="58" selection-end-line="93" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/deployme/GameComponents/GameMap.java">
+    <entry file="file://$PROJECT_DIR$/src/net/deployme/Program/GameLogic/MainLogic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-          <folding>
-            <element signature="e#646#647#0" expanded="true" />
-            <element signature="e#676#677#0" expanded="true" />
-            <element signature="e#726#727#0" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="315">
+          <caret line="109" column="39" selection-start-line="109" selection-start-column="39" selection-end-line="109" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
