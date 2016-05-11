@@ -129,6 +129,16 @@ public abstract class BaseHero implements java.io.Serializable{
         return obj instanceof BaseHero && ((BaseHero) obj).getId() == this.id;
     }
 
+    public String listInventory() {
+        String items = "";
+        String wp = weapon == null ? "none" : weapon.toString();
+        for (BaseItem item : gear)
+            items += item.toString() + " ";
+        if (gear.isEmpty())
+            items = "none";
+        return "Gear: " + items + "Weapon: " + wp;
+    }
+
     public String toString() {
         String items = "";
         String wp = weapon == null ? "none" : weapon.toString();

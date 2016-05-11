@@ -64,6 +64,7 @@ public class GameplayWindow extends javax.swing.JPanel implements Observer {
     public void update(Observable observable, Object data) {
         if (observable instanceof GameMap) {
             GameMap map = (GameMap) observable;
+            itemsList.setText(((BaseHero)map.player.getEntity()).listInventory());
             if (map.won)
                 MainWindow.getInstance().getController().win();
             if (map.fighting) {

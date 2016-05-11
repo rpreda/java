@@ -4,6 +4,10 @@ import net.deployme.Characters.Hero.BaseHero;
 import net.deployme.Characters.Hero.Warrior;
 import net.deployme.GameComponents.GameMap;
 import net.deployme.GameComponents.WorldObject;
+import net.deployme.Items.Armor.AdeptChest;
+import net.deployme.Items.Armor.AdeptHelm;
+import net.deployme.Items.Armor.AdeptLegs;
+import net.deployme.Items.BaseItem;
 import net.deployme.Items.Weapons.Sword;
 import net.deployme.Program.MainWindow;
 import net.deployme.Program.UIPanels.CreateHero;
@@ -19,6 +23,17 @@ public class MainLogic {
     private static MainLogic instance;
 
     private MainLogic() {
+    }
+
+    private BaseItem generateItem() {
+        Random rand = new Random();
+        switch (rand.nextInt(5)) {
+            case 1: return new Sword();
+            case 2: return new AdeptChest();
+            case 3: return new AdeptHelm();
+            case 4: return new AdeptLegs();
+            default: return null;
+        }
     }
 
     public static MainLogic getInstance() {
@@ -87,12 +102,14 @@ public class MainLogic {
             currentLevel.fighting = false;
             currentLevel.canFlee = true;
             currentLevel.removeEnemy(currentLevel.getSquareContent(currentLevel.player.posX, currentLevel.player.posY));
-            player.removeWeapon();
-            player.obtainGear(new Sword());//always gets a sword when killing enemy
+            BaseItem item;
+            Random rand = new Random();
+            if ((item = generateItem()) != null && rand.nextInt(100) <= 50)
+                player.obtainGear(item);
         }
         else if (player.isDead()) {
             currentLevel = null;
-            MainWindow.getInstance().changePanel(new GameMenu());//TODO: here add a percentage chance for a drop from enemy
+            MainWindow.getInstance().changePanel(new GameMenu());
             return;
         }
         currentLevel.notifyObservers();
