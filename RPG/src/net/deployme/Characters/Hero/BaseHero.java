@@ -32,6 +32,7 @@ public abstract class BaseHero implements java.io.Serializable{
     }
 
     //Fields have to be initialised by hero type
+    protected int hpRegen = 3;
     protected String name;
     protected int hitpoints;
     protected static int idIndex = 1;
@@ -77,6 +78,13 @@ public abstract class BaseHero implements java.io.Serializable{
             default: return null;
         }
         //return null;
+    }
+
+    public void regenHp() {
+        if (hitpoints < maxHp)
+            hitpoints += hpRegen;
+        if (hitpoints > maxHp)
+            hitpoints = maxHp;
     }
 
     public static BaseHero constructFromFile(String path) throws Exception {

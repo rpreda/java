@@ -9,12 +9,20 @@ import java.io.FileReader;
 public class GameMap extends net.deployme.GameComponents.Observable{//this should be restructured later
     private int mapSize;
     public boolean won = false;
+    public boolean lost = false;
+    public boolean fighting;
+    public String enemyDamage;
     public WorldObject player;
+    public BaseEnemy enemy;
     private List<WorldObject> enemies = new ArrayList<>();
     private List<WorldObject> items = new ArrayList<>();
 
     public int getMapSize() {
         return mapSize;
+    }
+
+    public void removeEnemy(WorldObject enemy) {
+        enemies.remove(enemy);
     }
 
     private WorldObject getEnemy(String[] line) throws Exception{

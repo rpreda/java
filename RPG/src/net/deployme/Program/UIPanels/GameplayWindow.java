@@ -65,7 +65,16 @@ public class GameplayWindow extends javax.swing.JPanel implements Observer {
         if (observable instanceof GameMap) {
             GameMap map = (GameMap) observable;
             if (map.won)
-                MainWindow.getInstance().notifyUser("WIN");
+                MainWindow.getInstance().getController().win();
+            if (map.fighting) {
+                hideMove();
+                showFightFlee();
+                enemyInfo.setText(map.enemyDamage);
+            }
+            else {
+                hideFightFlee();
+                showMove();
+            }
             hitpoints.setText(Integer.toString(((BaseHero)map.player.getEntity()).getHitpoints()));
             avgDamage.setText(Integer.toString(((BaseHero)map.player.getEntity()).dealDamage()));
             mapSize = map.getMapSize();
@@ -267,11 +276,11 @@ public class GameplayWindow extends javax.swing.JPanel implements Observer {
     }
 
     private void fightActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        MainWindow.getInstance().getController().fightEnemy();
     }
 
     private void fleeActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        MainWindow.getInstance().getController().fleeEnemy();
     }
 
 }

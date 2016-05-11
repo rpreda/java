@@ -1,4 +1,5 @@
 package net.deployme.Program.GameLogic;
+import net.deployme.Characters.Enemy.BaseEnemy;
 import net.deployme.Characters.Hero.BaseHero;
 import net.deployme.Characters.Hero.Warrior;
 import net.deployme.GameComponents.GameMap;
@@ -7,6 +8,7 @@ import net.deployme.Program.MainWindow;
 import net.deployme.Program.UIPanels.CreateHero;
 import net.deployme.Program.UIPanels.GameMenu;
 import net.deployme.Program.UIPanels.GameplayWindow;
+import sun.applet.Main;
 
 public class MainLogic {
     private BaseHero player;
@@ -22,9 +24,14 @@ public class MainLogic {
         }
         return instance;
     }
+    public void win() {
+        MainWindow.getInstance().notifyUser("YOU WON!");
+        MainWindow.getInstance().changePanel(new GameMenu());
+        this.currentLevel = null;
+        player.levelUp();
+    }
 
     public void movePlayer(int dir) {
-
         //1 up
         //2 down
         //3 left
@@ -51,8 +58,42 @@ public class MainLogic {
                 currentLevel.won = true;
                 break;
         }
+        if (player.getHitpoints() < player.getMaxHitpoints())
+                player.regenHp();
+        WorldObject obj;
+        if ((obj = currentLevel.getSquareContent(currentLevel.player.posX, currentLevel.player.posY)) != null) {
+            if (obj.getEntity() instanceof BaseEnemy) {
+                currentLevel.fighting = true;
+                currentLevel.enemy = (BaseEnemy)obj.getEntity();
+                currentLevel.enemyDamage = Integer.toString(((BaseEnemy) obj.getEntity()).dealDamage());
+            }
+        }
         currentLevel.notifyObservers();
 
+    }
+
+    public void fightEnemy() {
+        while (!currentLevel.enemy.isDead() && !player.isDead()) {
+            player.takeDamage(currentLevel.enemy.dealDamage());
+            currentLevel.enemy.takeDamage(player.dealDamage());
+        }
+        if (currentLevel.enemy.isDead()) {
+            currentLevel.enemy = null;
+            currentLevel.fighting = false;
+            currentLevel.removeEnemy(currentLevel.getSquareContent(currentLevel.player.posX, currentLevel.player.posY));
+        }
+        else if (player.isDead()) {
+            currentLevel = null;
+            MainWindow.getInstance().changePanel(new GameMenu());//TODO: here add a percentage chance for a drop from enemy
+            return;
+        }
+        currentLevel.notifyObservers();
+    }
+    public void fleeEnemy() {//TODO: add a percantage chance to stop enemy from fleeing
+        currentLevel.fighting = false;
+        currentLevel.player.posX = currentLevel.getMapSize() / 2;
+        currentLevel.player.posY = currentLevel.getMapSize() / 2;
+        currentLevel.notifyObservers();
     }
 
     public BaseHero getHero() {
